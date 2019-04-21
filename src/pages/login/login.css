@@ -1,0 +1,31 @@
+.form-login {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    width: 50%;
+    border: #1d85e0 solid;
+    padding: 1.2em;
+}
+
+.login-header {
+    border-bottom: #1d85e0 solid;
+    background: #c3dcf3;
+    width: 100%;
+    padding: 0.2em;
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-login {
+        position: absolute;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        -moz-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        width: 90%;
+        border: #1d85e0 solid;
+        padding: 1.2em;
+    }
+}

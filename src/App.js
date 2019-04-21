@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Suspense } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { ApolloProvider } from 'react-apollo';
+import ApolloClient from 'apollo-boost';
+import Login from "./pages/login";
+import Home from "./pages/home";
 import './App.css';
 
-class App extends Component {
-  render() {
+/*const PersonalDetail = lazy(() => import("./pages/home/PersonalDetail"))
+const AddressDetail = lazy(() => import("./pages/home/AddressDetail"));
+const IdentityDetail = lazy(() => import("./pages/home/IdentityDetail"));*/
+
+const client = new ApolloClient({ uri: 'http://localhost:4000' })
+
+const App = () => {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <ApolloProvider client={client}>
+        <Router>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route path="/home" component={Home} />
+          </Switch>
+          </Suspense>
+        </Router>
+      </ApolloProvider>
     );
-  }
 }
 
 export default App;
