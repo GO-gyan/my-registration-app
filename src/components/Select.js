@@ -15,11 +15,11 @@ const Select = props => {
 		      {props.options.map(option => {
 		        return (
                     <option
-		                key={option}
-		                value={option}
-		                label={option}
+		                key={option.value}
+		                value={option.value}
+		                label={option.label}
                     >
-                        {option}
+                        {option.label}
                     </option>
 		        );
 		      })}

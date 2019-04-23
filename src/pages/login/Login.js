@@ -19,7 +19,7 @@ class Login extends React.Component {
             password: "",
             area: ""
         },
-        areaOptions: ["NE", "ME", "ASEA"],
+        areaOptions: [],
         formValid: false
     };
 
@@ -37,8 +37,23 @@ class Login extends React.Component {
 
     handleFormSubmit = e => {
         e.preventDefault();
+        const { user } = this.state;
         console.log(this.state.user);
-        this.props.history.push("/home");
+        localStorage.setItem('area', user.area);
+        this.props.login({variables: { user: {userName:user.userName, password: user.password }}});
+        //this.props.history.push("/home");
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (state.areaOptions.length === 0 && props.options.length !== 0) {
+            const options = props.options.map(option => {
+                return {value: option.areaCode, label: option.areaLabel};
+            })
+          return {
+            areaOptions: options
+          };
+        }
+        return null;
     }
 
     render() {
@@ -46,9 +61,11 @@ class Login extends React.Component {
         return(
             <div className="container">
                 <div className="row">
+                {this.props.result && 
                     <div className="col col-12">
-                        <Message type="danger" message="Testing" />
+                        <Message type="danger" message={`Invalid username and password!!`} />
                     </div>
+                }
                 </div>
                 <form className="container-fluid">
                     <div className="form-login">

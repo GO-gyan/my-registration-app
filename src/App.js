@@ -10,7 +10,7 @@ import Login from "./pages/login";
 import Home from "./pages/home";
 import './App.css';
 
-const client = new ApolloClient({ uri: 'http://localhost:4000' })
+const client = new ApolloClient({ uri: 'http://localhost:4000/graphql' })
 
 const App = () => {
     return (

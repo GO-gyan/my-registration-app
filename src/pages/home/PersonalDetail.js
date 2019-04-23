@@ -7,7 +7,7 @@ class PersonalDetail extends React.Component {
         personal: {
             firstName: '',
             lastName: '',
-            age: ''
+            phone: ''
         }
     }
 
@@ -29,7 +29,7 @@ class PersonalDetail extends React.Component {
     static getDerivedStateFromProps(props, state) {
         if (state.personal.firstName === "" && props.data.firstName !== state.personal.firstName
                 || state.personal.lastName === "" && props.data.lastName !== state.personal.lastName
-                || state.personal.age === "" && props.data.age != state.personal.age) {
+                || state.personal.phone === "" && props.data.phone != state.personal.phone) {
           return {
             personal: {...state.personal, ...props.data}
           };
@@ -39,7 +39,8 @@ class PersonalDetail extends React.Component {
 
     render() {
         const { prevNext, url } = this.props;
-        const { firstName, lastName, age } = this.state.personal;
+        const { firstName, lastName, phone } = this.state.personal;
+        console.log("props==>", this.props);
         return (
             <div>
                 <h1>Personal Detail</h1>
@@ -62,9 +63,9 @@ class PersonalDetail extends React.Component {
                     />
                     <InputText 
                         inputType="number"
-                        name="age"
-                        value={age}
-                        placeholder="Enter your age"
+                        name="phone"
+                        value={phone}
+                        placeholder="Enter your phone number"
                         handleChange={this.handleChange}
                         title="Phone Number"
                     />
