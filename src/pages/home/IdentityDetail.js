@@ -26,6 +26,16 @@ class IdentityDetail extends React.Component {
         this.props.onSaveData(this.state.identity);
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (state.identity.aadhar === "" && props.data.aadhar !== state.identity.aadhar
+                || state.identity.pan === "" && props.data.pan !== state.identity.pan) {
+          return {
+            identity: {...state.identity, ...props.data}
+          };
+        }
+        return null;
+    }
+
     render() {
         const { aadhar, pan } = this.state.identity;
         const { prevNext, url } = this.props;

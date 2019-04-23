@@ -1,8 +1,12 @@
-import React from "react";
-import { Route, Link } from "react-router-dom";
-import PersonalDetail from "./PersonalDetail";
+import React, { lazy } from "react";
+import { Route } from "react-router-dom";
+/*import PersonalDetail from "./PersonalDetail";
 import AddressDetail from "./AddressDetail";
-import IdentityDetail from "./IdentityDetail";
+import IdentityDetail from "./IdentityDetail";*/
+
+const PersonalDetail = lazy(() => import("./PersonalDetail"))
+const AddressDetail = lazy(() => import("./AddressDetail"));
+const IdentityDetail = lazy(() => import("./IdentityDetail"));
 
 class Home extends React.Component {
     state = {
@@ -53,6 +57,7 @@ class Home extends React.Component {
                             url={match.url} 
                             handleData={this.handleData}
                             onSaveData={this.onSaveData}
+                            data={this.state.data}
                         />;
             case "identity" :
                 return <IdentityDetail 
@@ -60,6 +65,7 @@ class Home extends React.Component {
                             url={match.url}
                             handleData={this.handleData}
                             onSaveData={this.onSaveData}
+                            data={this.state.data}
                         />;
             default:
                 return <PersonalDetail 
@@ -67,6 +73,7 @@ class Home extends React.Component {
                             url={match.url} 
                             handleData={this.handleData}
                             onSaveData={this.onSaveData}
+                            data={this.state.data}
                         />;
         }
     }

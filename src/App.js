@@ -10,10 +10,6 @@ import Login from "./pages/login";
 import Home from "./pages/home";
 import './App.css';
 
-/*const PersonalDetail = lazy(() => import("./pages/home/PersonalDetail"))
-const AddressDetail = lazy(() => import("./pages/home/AddressDetail"));
-const IdentityDetail = lazy(() => import("./pages/home/IdentityDetail"));*/
-
 const client = new ApolloClient({ uri: 'http://localhost:4000' })
 
 const App = () => {

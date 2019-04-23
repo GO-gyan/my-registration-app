@@ -28,6 +28,18 @@ class AddressDetail extends React.Component {
         this.props.onSaveData(this.state.address);
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (state.address.addr1 === "" && props.data.addr1 !== state.address.addr1
+                || state.address.addr2 === "" && props.data.addr2 !== state.address.addr2
+                || state.address.city === "" && props.data.city != state.address.city
+                || state.address.pin === "" && props.data.pin != state.address.pin) {
+          return {
+            address: {...state.address, ...props.data}
+          };
+        }
+        return null;
+    }
+
     render() {
         const { addr1, addr2, city, pin } = this.state.address;
         const { prevNext, url } = this.props;

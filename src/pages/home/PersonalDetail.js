@@ -26,6 +26,17 @@ class PersonalDetail extends React.Component {
         this.props.onSaveData(this.state.personal);
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (state.personal.firstName === "" && props.data.firstName !== state.personal.firstName
+                || state.personal.lastName === "" && props.data.lastName !== state.personal.lastName
+                || state.personal.age === "" && props.data.age != state.personal.age) {
+          return {
+            personal: {...state.personal, ...props.data}
+          };
+        } 
+        return null;
+    }
+
     render() {
         const { prevNext, url } = this.props;
         const { firstName, lastName, age } = this.state.personal;
